@@ -1,0 +1,50 @@
+<mat-toolbar color="accent">
+  <span>Deepak Chaula</span>
+  <span class="demo-toolbar"></span>
+</mat-toolbar>
+
+<mat-card>
+  <!-- <div id="login" class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+  </div> -->
+  <div class="container">
+      <div class="searchFilter">
+          <div class="leftFloatFull">
+              <form [formGroup]="form" class="app-search">
+                  <input type="text" formControlName="groupName" [(ngModel)]="searchText" placeholder="Search in this group" class="form-control">
+              </form>
+          </div>
+      </div>
+    <!-- <div class="row" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()" [scrollWindow]="false"
+    style="height: 400px; overflow-y: scroll;">
+      <div *ngFor="let item of myGroupPostDataService" class="col-md-4" style="margin-top: 10px;">
+        <div class="main">
+            <mat-card>
+                <mat-card-header>
+                  <mat-card-title>{{item.title}}</mat-card-title>
+                  <mat-card-subtitle>{{item.author}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <mat-card-actions class="wordBreak">{{item.url}}</mat-card-actions>
+                </mat-card-content>
+                <mat-card-footer>{{item.created_at_i | date}}</mat-card-footer>
+            </mat-card>
+        </div>
+      </div>
+    </div> -->
+    <table matSort>
+        <tr>
+          <th mat-sort-header="name">Title</th>
+          <th mat-sort-header="calories">Author</th>
+          <th mat-sort-header="fat">URL</th>
+          <th mat-sort-header="carbs">Date</th>
+        </tr>
+      
+        <tr *ngFor="let item of myGroupPostDataService | groupFilter: {title: searchText}; let i=index;" (click)="openDialog()">
+          <td style="width: 30%;">{{item.title}}</td>
+          <td style="width: 15%;">{{item.author}}</td>
+          <td style="width: 40%;" class="wordBreak">{{item.url}}</td>
+          <td style="width: 15%;">{{item.created_at_i | date}}</td>
+        </tr>
+      </table>
+  </div>
+</mat-card>
